@@ -36,8 +36,8 @@ jobs:
     - name: Commit and push changes to other repository
       run: |
         cd update-count      
-        git config --global user.email "moreakash947@gmail.com"
-        git config --global user.name "0akash0"
+        git config --global user.email "$GITHUB_ACTOR@gmail.com"
+        git config --global user.name "GITHUB_USER"
         git add file.txt
         git commit -m "Increment commit count"
         git push
