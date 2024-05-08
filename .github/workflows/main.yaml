@@ -1,0 +1,38 @@
+name: Update File
+
+on:
+  push:
+    branches:
+      - uat
+
+jobs:
+  update-file:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout main repository
+      uses: actions/checkout@v2
+    - name: Clone repo
+      run: |
+        git clone https://${{ secrets.AWS_GITHUB_USER }}:${{ secrets.AWS_GITHUB_TOKEN }}@github.com/0akash0/update-count
+        # git checkout uat
+        cd Update-count
+        ls
+        git branch  
+      
+    - name: Update File
+      run: |
+        #!/bin/bash
+        
+        # Incrementing the commit count by 50
+        COUNT=$(awk '/My commit count is:/{print $5}' file.txt)
+        UPDATED_COUNT=$((COUNT + 50))
+        awk -v count="$UPDATED_COUNT" '/My commit count is:/{$5=count"."} 1' file.txt > temp.txt && mv temp.txt file.txt
+        
+        # Commit and push the changes to the other repository
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git add file.txt
+        git commit -m "Increment commit count"
+        git remote add other_repo https://github.com/username/other-repo.git
+        git push other_repo HEAD:uat
