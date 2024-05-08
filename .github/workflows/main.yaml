@@ -12,22 +12,22 @@ jobs:
     steps:
     - name: Checkout main repository
       uses: actions/checkout@v2
-    - name: Clone repo
+      
+    - name: Clone repository
       run: |
         git clone https://${{ secrets.AWS_GITHUB_USER }}:${{ secrets.AWS_GITHUB_TOKEN }}@github.com/0akash0/update-count
-        git checkout uat
         cd update-count
+        git checkout uat
         ls
-        git branch  
+        git branch
       
     - name: Increment commit count
       run: |
-          count=$(($(grep -oP '(?<=My commit count is: )\d+' file.txt)+50))
-          sed -i "s/My commit count is: \d\+/My commit count is: $count/" file.txt
-
-
+        count=$(($(grep -oP '(?<=My commit count is: )\d+' file.txt)+50))
+        sed -i "s/My commit count is: \d\+/My commit count is: $count/" file.txt
           
-        # Commit and push the changes to the other repository
+    - name: Commit and push changes to other repository
+      run: |
         git config --global user.email "actions@github.com"
         git config --global user.name "GitHub Actions"
         git add file.txt
