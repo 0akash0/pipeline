@@ -25,7 +25,7 @@ jobs:
         #!/bin/bash
         
         # Incrementing the commit count by 50
-        COUNT=$(awk '/My commit count is:/{print $5}' file.txt)
+        COUNT=$(awk '/My commit count is:/{print $5}' $file.txt)
         UPDATED_COUNT=$((COUNT + 50))
         awk -v count="$UPDATED_COUNT" '/My commit count is:/{$5=count"."} 1' file.txt > temp.txt && mv temp.txt file.txt
         
