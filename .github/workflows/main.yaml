@@ -23,7 +23,8 @@ jobs:
       
     - name: Increment commit count
       run: |
-        cat file.txt
+        ls  
+        cat ./file.txt
         #count=$(($(grep -oP '(?<=My commit count is: )\d+' ./file.txt)+50))
         #sed -i "s/My commit count is: \d\+/My commit count is: $count/" file.txt
           
