@@ -20,15 +20,13 @@ jobs:
         ls
         git branch  
       
-    - name: Update File
+    - name: Increment commit count
       run: |
-        #!/bin/bash
-        
-        # Incrementing the commit count by 50
-        COUNT=$(awk '/My commit count is:/{print $5}' file.txt)
-        UPDATED_COUNT=$((COUNT + 50))
-        awk -v count="$UPDATED_COUNT" '/My commit count is:/{$5=count"."} 1' file.txt > temp.txt && mv temp.txt file.txt
-        
+          count=$(($(grep -oP '(?<=My commit count is: )\d+' file.txt)+50))
+          sed -i "s/My commit count is: \d\+/My commit count is: $count/" file.txt
+
+
+          
         # Commit and push the changes to the other repository
         git config --global user.email "actions@github.com"
         git config --global user.name "GitHub Actions"
