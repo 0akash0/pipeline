@@ -25,9 +25,13 @@ jobs:
       run: |
         cd update-count      
         ls  
-        COUNT=$(awk '/My commit count is:/{print $5}' ./file.txt)
+        # Incrementing the commit count by 50
+        COUNT=$(awk -F": " '/My commit count is/{print $2}' file.txt)
+        echo "Current count: $COUNT"
         UPDATED_COUNT=$((COUNT + 50))
-        sed -i "s/My commit count is: $COUNT./My commit count is: $UPDATED_COUNT./" ./file.txt
+        echo "Updated count: $UPDATED_COUNT"
+        sed -i "s/My commit count is: $COUNT./My commit count is: $UPDATED_COUNT./" file.txt
+
         cat ./file.txt
           
     - name: Commit and push changes to other repository
