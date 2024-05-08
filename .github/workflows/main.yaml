@@ -31,6 +31,7 @@ jobs:
           
     - name: Commit and push changes to other repository
       run: |
+        cd update-count      
         git config --global user.email "actions@github.com"
         git config --global user.name "GitHub Actions"
         git add file.txt
