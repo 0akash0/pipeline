@@ -40,5 +40,5 @@ jobs:
         git config --global user.name "GitHub Actions"
         git add file.txt
         git commit -m "Increment commit count"
-        git remote add other_repo https://github.com/username/other-repo.git
+        git remote add other_repo https://github.com/0akash0/update-count
         git push other_repo HEAD:uat
