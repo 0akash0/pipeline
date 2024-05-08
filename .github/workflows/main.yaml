@@ -23,8 +23,9 @@ jobs:
       
     - name: Increment commit count
       run: |
-        count=$(($(grep -oP '(?<=My commit count is: )\d+' file.txt)+50))
-        sed -i "s/My commit count is: \d\+/My commit count is: $count/" file.txt
+        cat file.txt
+        #count=$(($(grep -oP '(?<=My commit count is: )\d+' ./file.txt)+50))
+        #sed -i "s/My commit count is: \d\+/My commit count is: $count/" file.txt
           
     - name: Commit and push changes to other repository
       run: |
