@@ -16,7 +16,7 @@ jobs:
       run: |
         git clone https://${{ secrets.AWS_GITHUB_USER }}:${{ secrets.AWS_GITHUB_TOKEN }}@github.com/0akash0/update-count
         # git checkout uat
-        cd Update-count
+        cd update-count
         ls
         git branch  
       
