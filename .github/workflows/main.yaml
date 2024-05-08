@@ -23,6 +23,7 @@ jobs:
       
     - name: Increment commit count
       run: |
+        cd update-count      
         ls  
         cat ./file.txt
         #count=$(($(grep -oP '(?<=My commit count is: )\d+' ./file.txt)+50))
