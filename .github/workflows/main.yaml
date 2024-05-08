@@ -37,7 +37,7 @@ jobs:
       run: |
         cd update-count      
         git config user.email "$GITHUB_ACTOR@gmail.com"
-        git config user.name "GITHUB_USER"
+        git config user.name "GITHUB_ACTOR"
         git add file.txt
         git commit -m "Increment commit count"
         git push
